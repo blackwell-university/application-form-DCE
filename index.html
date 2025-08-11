@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Division of Continuing Education Application Form</title>
+    
+    <!-- Librerías Externas -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0078d4;
+            --primary-hover: #005a9e;
+            --background-color: #f0f2f5;
+            --text-color: #333;
+            --subtle-text-color: #595959;
+            --border-color: #d1d5db;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --input-bg: #fdfdfd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            background-image: url('https://cdn.bitrix24.es/b15495391/landing/164/164ee2aa6aea49cb44d001c7da59a84c/beta-port-01_1x.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .form-header {
+            padding: 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+        }
+
+        .form-header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: var(--subtle-text-color);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-body {
+            padding: 1.5rem 2.5rem 2.5rem;
+        }
+        
+        .section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .section h2 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section h2 i {
+            color: var(--primary-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.75rem;
+            margin-bottom: 1.75rem;
+        }
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: var(--subtle-text-color);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease-in-out;
+            background-color: var(--input-bg);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.2);
+        }
+        
+        input[type="date"] {
+            -webkit-appearance: none;
+        }
+        
+        .financing-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .financing-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 400;
+            cursor: pointer;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .financing-group input[type="radio"] {
+            display: none;
+        }
+        .financing-group input[type="radio"]:checked + label {
+            background-color: rgba(0, 120, 212, 0.1);
+            border-color: var(--primary-color);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .signature-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        #signature-pad {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            background: #fcfcfc;
+            width: 100%;
+            max-width: 550px;
+            height: 220px;
+            cursor: crosshair;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        button.secondary {
+            background: #e1e1e1;
+            color: var(--text-color);
+        }
+        button.secondary:hover {
+            background: #d1d1d1;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            width: 100%;
+            padding: 1.1rem;
+            font-size: 1.15rem;
+            margin-top: 2.5rem;
+        }
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.2);
+        }
+
+        .guardian-section {
+            display: none;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 2rem;
+            background-color: rgba(0, 120, 212, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .guardian-section.visible {
+            display: block;
+        }
+        
+        #currentDate {
+            background:#f0f2f5; 
+            font-weight: 600; 
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem 0.5rem; }
+            .form-header { padding: 2rem 1.5rem; }
+            .form-body { padding: 1rem 1.5rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-card">
+            <header class="form-header">
+                <h1>Division of Continuing Education</h1>
+                <p>Application Form</p>
+            </header>
+
+            <main class="form-body">
+                <form id="educationForm">
+
+                    <section class="section">
+                        <h2><i class="fa-solid fa-user-pen"></i>Applicant Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="TypeDocument">Document Type</label>
+                                <select id="TypeDocument" name="TypeDocument" required>
+                                    <option value="">Select a document type...</option>
+                                    <option value="ID Card">ID Card</option>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Driver's License">Driver's License</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="governmentId">Document Number</label>
+                                <input type="text" id="governmentId" name="governmentId" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required onchange="checkAge()">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2><i class="fa-solid fa-map-location-dot"></i>Contact & Location</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneCell">Phone / Cell</label>
+                                <input type="tel" id="phoneCell" name="phoneCell" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Street Address</label>
+                                <input type="text" id="address" name="address" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Zip / Postal Code</label>
+                                <input type="text" id="zipCode" name="zipCode" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group">
+                                <label for="country">Country</label>
+                                <select name="country" id="country" required onchange="toggleStateField()">
+                                    <option value="">Select Country...</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Honduras">Honduras</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Nicaragua">Nicaragua</option>
+                                    <option value="Panamá">Panamá</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Republica dominicana">Dominican Republic</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="United States">United States</option>
+                                </select>
+                            </div>
+                             <div class="form-group" id="stateField" style="display: none;">
+                                <label for="state">State (USA Only)</label>
+                                <input type="text" name="state" id="state">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2><i class="fa-solid fa-briefcase"></i>Professional Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="employer">Employer (Optional)</label>
+                                <input type="text" id="employer" name="employer">
+                            </div>
+                            <div class="form-group">
+                                <label for="occupation">Occupation (Optional)</label>
+                                <input type="text" id="occupation" name="occupation">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="guardian-section" id="guardianSection">
+                        <h2><i class="fa-solid fa-user-shield"></i>Parent or Legal Guardian Information</h2>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: -1rem; margin-bottom: 1.5rem;">This section is required for applicants under 18 years of age.</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="parentLastName">Guardian's Last Name</label>
+                                <input type="text" name="parentLastName" id="parentLastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="parentFirstName">Guardian's First Name</label>
+                                <input type="text" name="parentFirstName" id="parentFirstName">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group">
+                                <label for="parentEmail">Guardian's Email</label>
+                                <input type="email" name="parentEmail" id="parentEmail">
+                            </div>
+                            <div class="form-group">
+                                <label for="relationship">Relationship to Applicant</label>
+                                <input type="text" name="relationship" id="relationship">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2><i class="fa-solid fa-graduation-cap"></i>Program and Financing</h2>
+                        <div class="form-group">
+                            <label for="program">Select Program</label>
+                            <select id="program" name="program" required>
+                                <option value="">Select a program...</option>
+                                <option value="Cybersecurity and Cyber Defence">Cybersecurity and Cyber Defence</option>
+                                <option value="Research Project Development">Research Project Development</option>
+                                <option value="Research Thesis Development">Research Thesis Development</option>
+                                <option value="Language and Literature Didactics">Language and Literature Didactics</option>
+                                <option value="Health Sciences Education">Health Sciences Education</option>
+                                <option value="ABA Assessment and Intervention in Autistic Spectrum Disorder">ABA Assessment and Intervention in Autistic Spectrum Disorder</option>
+                                <option value="Pediatric Nursing">Pediatric Nursing</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Nutrition and Food for Health and Sports Performance">Nutrition and Food for Health and Sports Performance</option>
+                                <option value="Clinical Psychology">Clinical Psychology</option>
+                                <option value="Scientific Article Writing">Scientific Article Writing</option>
+                                <option value="Mental Health and Psychiatry">Mental Health and Psychiatry</option>
+                                <option value="Social Work in Gender Violence">Social Work in Gender Violence</option>
+                                <option value="Strategic Marketing">Strategic Marketing</option>
+                                <option value="Business Management">Business Management</option>
+                                <option value="Nursing in Cardiology">Nursing in Cardiology</option>
+                                <option value="Forensic Analysis">Forensic Analysis</option>
+                                <option value="Artificial Intelligence for Healthcare Professionals">Artificial Intelligence for Healthcare Professionals</option>
+                                <option value="Artificial Intelligence Applied to Logistics">Artificial Intelligence Applied to Logistics</option>
+                                <option value="Psychological Evaluation and Diagnosis">Psychological Evaluation and Diagnosis</option>
+                                <option value="Psychological Analysis and Persecution">Psychological Analysis and Persecution</option>
+                                <option value="Expert in Sports Training">Expert in Sports Training</option>
+                                <option value="Comprehensive Geriatric Nursing">Comprehensive Geriatric Nursing</option>
+                            </select>
+                        </div>
+                         <div class="form-group" style="margin-top: 2rem;">
+                            <label>Type of Financing</label>
+                            <div class="financing-group">
+                                <div>
+                                    <input type="radio" id="fin-personal" name="TypeFinancing" value="Personal" required>
+                                    <label for="fin-personal">Personal</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="fin-institutional" name="TypeFinancing" value="Institutional">
+                                    <label for="fin-institutional">Institutional</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2><i class="fa-solid fa-signature"></i>Agreement and Signature</h2>
+                        <div class="form-group">
+                            <label for="currentDate">Submission Date</label>
+                            <input type="text" id="currentDate" name="date" readonly>
+                        </div>
+                        <div class="signature-container">
+                            <label>By signing, I certify that all information provided is true and complete.</label>
+                            <canvas id="signature-pad"></canvas>
+                            <div class="btn-group">
+                                <button type="button" class="secondary" onclick="clearSignature()">Clear Signature</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i> Submit Application
+                        </button>
+                    </section>
+
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // !!! IMPORTANT !!! Replace this with your own Google Apps Script Web App URL.
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDtjX4x1ABaDca5VCArAG2x2eDznjFWEp729C6Xg_Gy5uot0Tr2E3oJg33LrzrjvWNmg/exec';
+
+        const form = document.getElementById('educationForm');
+        const canvas = document.getElementById('signature-pad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (!form.checkValidity() || !isCanvasSigned(canvas)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Incomplete Form',
+                    text: 'Please fill out all required fields and provide your signature before submitting.'
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: 'Submitting Application...',
+                text: 'Please wait, this may take a moment.',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
+
+            const formData = Object.fromEntries(new FormData(form));
+            formData.signature = canvas.toDataURL();
+
+            try {
+                const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) });
+                const result = await response.json();
+
+                if (result.success) {
+                    // --- ESTE ES EL CAMBIO SOLICITADO ---
+                    // Se eliminó el botón "View Document".
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Application Submitted!',
+                        text: 'Your form has been processed successfully.',
+                        confirmButtonText: 'Done'
+                    }).then(() => {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Submission Error',
+                        text: result.error || 'An unknown server error occurred. Please try again.'
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Connection Error',
+                    text: `Could not submit the form: ${error.message}`
+                });
+            }
+        });
+        
+        function isCanvasSigned(c) {
+            const pixelBuffer = new Uint32Array(c.getContext('2d').getImageData(0, 0, c.width, c.height).data.buffer);
+            return pixelBuffer.some(color => color !== 0);
+        }
+
+        window.onload = () => {
+            document.getElementById('currentDate').value = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            setupSignaturePad();
+            checkAge();
+            toggleStateField();
+        };
+
+        function checkAge() {
+            const dobInput = document.getElementById('dateOfBirth');
+            const guardianSection = document.getElementById('guardianSection');
+            const guardianFields = guardianSection.querySelectorAll('input');
+
+            if (!dobInput.value) {
+                guardianSection.classList.remove('visible');
+                guardianFields.forEach(field => field.required = false);
+                return;
+            }
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) { age--; }
+
+            if (age < 18) {
+                guardianSection.classList.add('visible');
+                guardianFields.forEach(field => {
+                    if (field.id !== 'parentEmail') field.required = true; // El email del tutor es opcional si no es requerido
+                });
+            } else {
+                guardianSection.classList.remove('visible');
+                guardianFields.forEach(field => {
+                    field.required = false;
+                    field.value = '';
+                });
+            }
+        }
+
+        function toggleStateField() {
+            const country = document.getElementById('country').value;
+            const stateField = document.getElementById('stateField');
+            const stateInput = document.getElementById('state');
+            if (country === 'United States') {
+                stateField.style.display = 'block';
+                stateInput.required = true;
+            } else {
+                stateField.style.display = 'none';
+                stateInput.required = false;
+                stateInput.value = '';
+            }
+        }
+        
+        function setupSignaturePad() {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = canvas.offsetWidth * dpr;
+            canvas.height = canvas.offsetHeight * dpr;
+            ctx.scale(dpr, dpr);
+            
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = '#333';
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+        
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches ? e.touches[0] : e;
+            return {
+                x: touch.clientX - rect.left,
+                y: touch.clientY - rect.top
+            };
+        }
+
+        let drawing = false;
+        function startDrawing(e) { e.preventDefault(); drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); }
+        function draw(e) { if (!drawing) return; e.preventDefault(); const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); }
+        function stopDrawing() { if (drawing) { ctx.closePath(); drawing = false; } }
+        function clearSignature() { ctx.clearRect(0, 0, canvas.width, canvas.height); setupSignaturePad(); }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
+        window.addEventListener('resize', setupSignaturePad);
+
+    </script>
+</body>
+</html>
